@@ -37,6 +37,9 @@ Steps to setup nestquest-frontend
 
     # install bootstrap for css
     npm install bootstrap --save
+
+    # install axios for HTTP calls in react apps
+    npm install axios --save
     
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
