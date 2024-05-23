@@ -35,6 +35,10 @@ Steps to setup nestquest-frontend
         port: 3000
     }
 
+    # install bootstrap for css
+    npm install bootstrap --save
+    
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
