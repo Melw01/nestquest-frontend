@@ -13,7 +13,7 @@ function App() {
       <HeaderComponent />
         <Routes>
             <Route path='/' element={ <ListUserComponent /> }></Route>  
-            <Route path='/user' element={<ListUserComponent />}></Route>  
+            <Route path='/users' element={<ListUserComponent />}></Route>  
             <Route path='/add-user' element={ <UserComponent />}></Route>
         </Routes>
       <FooterComponent />
