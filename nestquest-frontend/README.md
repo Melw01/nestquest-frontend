@@ -40,6 +40,9 @@ Steps to setup nestquest-frontend
 
     # install axios for HTTP calls in react apps
     npm install axios --save
+
+    # install react router dom
+    npm install react-router-dom --save
     
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
