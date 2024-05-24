@@ -1,11 +1,15 @@
 
 import './App.css'
+import { FooterComponent } from './components/FooterComponent'
+import { HeaderComponent } from './components/HeaderComponent'
 import ListUserComponent from './components/ListUserComponent'
 
 function App() {
   return (
     <>
-    <ListUserComponent />
+      <HeaderComponent />
+      <ListUserComponent />
+      <FooterComponent />
     </>
   )
 }
