@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { createUser } from '../services/UserService' 
 
 const UserComponent = () => {
@@ -8,6 +8,7 @@ const UserComponent = () => {
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
 
+  const {id} = useParams();
   const [errors, setErrors] = useState({
     firstName: '',
     lastName: '',
@@ -67,12 +68,19 @@ const UserComponent = () => {
     return valid;
   }
 
+  function pageTitle() {
+    if (id) {
+      return <h2 className='text-center'>Update User</h2>
+    } else {
+      return <h2 className='text-center'>Add User</h2>
+    }
+  }
   return (
     <div className='container'>
       <br /> <br />
       <div className='row'>
         <div className='card col-md-6 offset-md-3 offset-md-3'>
-          <h2 className='text-center'>Add User</h2>
+          {pageTitle()}
           <div className='card-body'>
             <form>
               <div className='form-group mb-2'>
