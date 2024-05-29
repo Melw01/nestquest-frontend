@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { createUser } from '../services/UserService' 
+import { createUser, getUser, updateUser } from '../services/UserService' 
 
 const UserComponent = () => {
   const [firstName, setFirstName] = useState('')
@@ -18,17 +18,43 @@ const UserComponent = () => {
 
   const navigator = useNavigate();
 
-  function saveUser(e){
+  useEffect(() => {
+    if (id) {
+      getUser(id).then((response) => {
+        setFirstName(response.data.firstName);
+        setLastName(response.data.lastName);
+        setEmail(response.data.email);
+        setPhoneNumber(response.data.phoneNumber);
+      }).catch(error => {
+        console.error(error);
+      })
+    }
+  }, [id])
+
+  function saveOrUpdateUser(e){
     e.preventDefault();
-      if (validateForm()) {
-        const user = {firstName, lastName, email, phoneNumber}
-        console.log(user)
+
+    if (validateForm()) {
     
+      const user = {firstName, lastName, email, phoneNumber}
+      console.log(user)
+  
+      if (id) {
+        updateUser(id, user).then((response) => {
+          console.log(response.data);
+          navigator('/users')
+        }).catch(error => {
+            console.error(error);
+        })
+      } else {
         createUser(user).then((response) => {
           console.log(response.data);
           navigator('/users')
+        }).catch(error => {
+          console.error(error);
         })
       }
+    }
   }
 
   function validateForm() {
@@ -135,7 +161,7 @@ const UserComponent = () => {
                 </input>
                 { errors.phoneNumber && <div className='invalid-feedback'>{ errors.phoneNumber} </div>}
               </div>
-              <button className='btn btn-success' onClick={saveUser}>Submit</button>
+              <button className='btn btn-success' onClick={saveOrUpdateUser}>Submit</button>
             </form>
           </div>
         </div>
