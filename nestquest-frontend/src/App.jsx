@@ -2,9 +2,9 @@
 import './App.css'
 import { FooterComponent } from './components/FooterComponent'
 import { HeaderComponent } from './components/HeaderComponent'
-import ListUserComponent from './components/ListUserComponent'
+import ListClientComponent from './components/ListClientComponent'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import UserComponent from './components/UserComponent'
+import ClientComponent from './components/ClientComponent'
 
 function App() {
   return (
@@ -12,10 +12,10 @@ function App() {
     <BrowserRouter>
       <HeaderComponent />
         <Routes>
-            <Route path='/' element={ <ListUserComponent /> }></Route>  
-            <Route path='/users' element={<ListUserComponent />}></Route>  
-            <Route path='/add-user' element={ <UserComponent />}></Route>
-            <Route path='/edit-user/:id' element={ <UserComponent />}></Route>
+            <Route path='/' element={ <ListClientComponent /> }></Route>  
+            <Route path='/clients' element={<ListClientComponent />}></Route>  
+            <Route path='/add-client' element={ <ClientComponent />}></Route>
+            <Route path='/edit-client/:id' element={ <ClientComponent />}></Route>
         </Routes>
       <FooterComponent />
     </BrowserRouter>

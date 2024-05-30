@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { createUser, getUser, updateUser } from '../services/UserService' 
+import { createClient, getClient, updateClient } from '../services/ClientService' 
 
-const UserComponent = () => {
+const ClientComponent = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
@@ -20,7 +20,7 @@ const UserComponent = () => {
 
   useEffect(() => {
     if (id) {
-      getUser(id).then((response) => {
+      getClient(id).then((response) => {
         setFirstName(response.data.firstName);
         setLastName(response.data.lastName);
         setEmail(response.data.email);
@@ -31,25 +31,25 @@ const UserComponent = () => {
     }
   }, [id])
 
-  function saveOrUpdateUser(e){
+  function saveOrUpdateClient(e){
     e.preventDefault();
 
     if (validateForm()) {
     
-      const user = {firstName, lastName, email, phoneNumber}
-      console.log(user)
+      const client = {firstName, lastName, email, phoneNumber}
+      console.log(client)
   
       if (id) {
-        updateUser(id, user).then((response) => {
+        updateClient(id, client).then((response) => {
           console.log(response.data);
-          navigator('/users')
+          navigator('/clients')
         }).catch(error => {
             console.error(error);
         })
       } else {
-        createUser(user).then((response) => {
+        createClient(client).then((response) => {
           console.log(response.data);
-          navigator('/users')
+          navigator('/clients')
         }).catch(error => {
           console.error(error);
         })
@@ -96,9 +96,9 @@ const UserComponent = () => {
 
   function pageTitle() {
     if (id) {
-      return <h2 className='text-center'>Update User</h2>
+      return <h2 className='text-center'>Update Client</h2>
     } else {
-      return <h2 className='text-center'>Add User</h2>
+      return <h2 className='text-center'>Add Client</h2>
     }
   }
   return (
@@ -113,7 +113,7 @@ const UserComponent = () => {
                 <label className='form-label'>First Name:</label>
                 <input 
                   type='text'
-                  placeholder='Enter User First Name'
+                  placeholder='Enter Client First Name'
                   name='firstName'
                   value={firstName}
                   className={`form-control ${ errors.firstName ? 'is-invalid': ''}`}
@@ -126,7 +126,7 @@ const UserComponent = () => {
                 <label className='form-label'>Last Name:</label>
                 <input 
                   type='text'
-                  placeholder='Enter User Last Name'
+                  placeholder='Enter Client Last Name'
                   name='lastName'
                   value={lastName}
                   className={`form-control ${ errors.lastName ? 'is-invalid': ''}`}
@@ -139,7 +139,7 @@ const UserComponent = () => {
                 <label className='form-label'>Email:</label>
                 <input 
                   type='text'
-                  placeholder='Enter User Email'
+                  placeholder='Enter Client Email'
                   name='email'
                   value={email}
                   className={`form-control ${ errors.email ? 'is-invalid': ''}`}
@@ -152,7 +152,7 @@ const UserComponent = () => {
                 <label className='form-label'>Phone Number:</label>
                 <input 
                   type='text'
-                  placeholder='Enter User Phone Number'
+                  placeholder='Enter Client Phone Number'
                   name='phoneNumber'
                   value={phoneNumber}
                   className={`form-control ${ errors.phoneNumber ? 'is-invalid': ''}`}
@@ -161,7 +161,7 @@ const UserComponent = () => {
                 </input>
                 { errors.phoneNumber && <div className='invalid-feedback'>{ errors.phoneNumber} </div>}
               </div>
-              <button className='btn btn-success' onClick={saveOrUpdateUser}>Submit</button>
+              <button className='btn btn-success' onClick={saveOrUpdateClient}>Submit</button>
             </form>
           </div>
         </div>
@@ -170,4 +170,4 @@ const UserComponent = () => {
   )
 }
 
-export default UserComponent
+export default ClientComponent
